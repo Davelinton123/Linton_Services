@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linton Services — Design, Web, Solar &amp; Electrical</title>
+  <meta name="description" content="Linton Services is your one-stop digital and technical partner: graphics design, web development, solar and inverter consultations, and professional electrical installations." />
+  <meta name="theme-color" content="#FBF6EE" />
+  <meta property="og:title" content="Linton Services — Innovative Solutions, Exceptional Results" />
+  <meta property="og:description" content="Graphics design, web apps, solar and inverter consultations, and electrical installations from one trusted team." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Shared SVG symbols -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="logo" viewBox="0 0 64 72">
+        <path d="M32 3 8 11v22c0 15 10 28 24 36 14-8 24-21 24-36V11L32 3Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        <text x="32" y="43" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="26" fill="currentColor">LS</text>
+      </symbol>
+      <symbol id="i-design" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5Z M3 13l9 5 9-5 M3 17.5l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-web" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 21h8M12 17v4M8 9l-2 2 2 2M16 9l2 2-2 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-solar" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v1.5M4.5 4.5l1 1M19.5 4.5l-1 1M2 9h1.5M20.5 9H22M5 21l2-6h10l2 6H5Z M9.5 15 9 21M14.5 15l.5 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m3.5 7 8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6l-7-3Z M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-hand" viewBox="0 0 24 24"><path d="M3 12l4-4 4 2 3-2 5 4-5 6-3 1-3-2-4-1-1-4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Linton Services — home">
+        <svg class="brand-mark" aria-hidden="true"><use href="#logo"/></svg>
+        <span class="brand-text">Linton <em>Services</em></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#calculator">Solar Planner</a>
+        <a href="#process">How we work</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch colour theme" aria-pressed="false">
+          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="#contact" data-service="">Get a free quote</a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Your one-stop digital &amp; technical partner</p>
+          <h1 class="reveal">Design it. Build it. <span class="accent">Power it.</span></h1>
+          <p class="lead reveal">
+            From a brand people remember to a website that works for you, and from clean solar power to safe, tidy wiring —
+            Linton Services takes care of it all, with one friendly team and one point of contact.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#contact" data-service="">Start a project
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="#services">Explore services</a>
+          </div>
+          <ul class="hero-points reveal" role="list">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Professional service</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Reliable &amp; affordable</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Timely delivery</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="scene">
+            <svg viewBox="0 0 480 420" class="scene-svg" role="img" aria-label="Illustration of a home with solar panels">
+              <defs>
+                <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="var(--sky-top)"/><stop offset="1" stop-color="var(--sky-bottom)"/>
+                </linearGradient>
+                <radialGradient id="sunGlow"><stop offset="0" stop-color="#F6C768"/><stop offset="1" stop-color="#F6C768" stop-opacity="0"/></radialGradient>
+              </defs>
+              <rect width="480" height="420" rx="28" fill="url(#sky)"/>
+              <g class="sun">
+                <circle cx="372" cy="96" r="78" fill="url(#sunGlow)"/>
+                <circle cx="372" cy="96" r="30" fill="#F2B84B"/>
+                <g class="rays" stroke="#F2B84B" stroke-width="3" stroke-linecap="round">
+                  <path d="M372 46v-12M372 146v12M322 96h-12M434 96h12M337 61l-8-8M407 131l8 8M337 131l-8 8M407 61l8-8"/>
+                </g>
+              </g>
+              <path d="M0 340c80-26 160-30 240-14s160 12 240-8v102H0Z" fill="var(--hill)"/>
+              <!-- house -->
+              <rect x="110" y="212" width="220" height="132" fill="var(--wall)"/>
+              <path d="M92 218 220 124l128 94Z" fill="var(--roof)"/>
+              <g class="panels">
+                <path d="M158 196 214 154l60 44-56 0Z" fill="#274071"/>
+                <path d="M186 175l34 25M206 160l32 27M170 190h88" stroke="#6E8FCB" stroke-width="1.4" opacity=".8"/>
+              </g>
+              <rect x="206" y="268" width="46" height="76" rx="4" fill="var(--door)"/>
+              <circle cx="244" cy="306" r="2.5" fill="#F2B84B"/>
+              <g class="window-glow">
+                <rect x="136" y="244" width="48" height="42" rx="3" fill="#FBD98A"/>
+                <rect x="268" y="244" width="46" height="42" rx="3" fill="#FBD98A"/>
+                <path d="M160 244v42M136 265h48M291 244v42M268 265h46" stroke="var(--wall)" stroke-width="3"/>
+              </g>
+              <!-- inverter box -->
+              <rect x="338" y="268" width="34" height="52" rx="5" fill="#FFFFFF" stroke="var(--line)" stroke-width="2"/>
+              <rect x="344" y="276" width="22" height="12" rx="2" fill="#274071"/>
+              <circle cx="355" cy="304" r="3" fill="#59B37A"/>
+              <!-- trees -->
+              <g fill="#6E9A62"><circle cx="64" cy="318" r="26"/><circle cx="440" cy="322" r="22"/></g>
+              <g fill="#7A5A3A"><rect x="61" y="326" width="6" height="22"/><rect x="437" y="328" width="6" height="20"/></g>
+            </svg>
+
+            <div class="float-card fc-1"><svg class="icon" aria-hidden="true"><use href="#i-design"/></svg><span>Brand &amp; Graphics</span></div>
+            <div class="float-card fc-2"><svg class="icon" aria-hidden="true"><use href="#i-web"/></svg><span>Web &amp; Apps</span></div>
+            <div class="float-card fc-3"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg><span>Electrical</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Design</span><i></i><span>Develop</span><i></i><span>Power</span><i></i><span>Connect</span><i></i>
+          <span>Design</span><i></i><span>Develop</span><i></i><span>Power</span><i></i><span>Connect</span><i></i>
+          <span>Design</span><i></i><span>Develop</span><i></i><span>Power</span><i></i><span>Connect</span><i></i>
+          <span>Design</span><i></i><span>Develop</span><i></i><span>Power</span><i></i><span>Connect</span><i></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="section" id="services">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">What we do</p>
+          <h2>Four services, one dependable team</h2>
+          <p class="section-sub">Pick what you need today — and know that the rest is a message away.</p>
+        </header>
+
+        <div class="service-filters reveal" role="tablist" aria-label="Filter services">
+          <button class="chip is-active" role="tab" aria-selected="true" data-filter="all" type="button">All</button>
+          <button class="chip" role="tab" aria-selected="false" data-filter="digital" type="button">Digital</button>
+          <button class="chip" role="tab" aria-selected="false" data-filter="technical" type="button">Technical</button>
+        </div>
+
+        <div class="service-grid">
+          <article class="card service reveal" data-group="digital" data-service-name="Graphics Design">
+            <div class="service-top">
+              <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-design"/></svg></span>
+              <span class="service-num">01</span>
+            </div>
+            <h3>Graphics Design</h3>
+            <p>Posters, banners, cards, social media designs and more — made to help you stand out with stunning designs.</p>
+            <ul class="ticks" role="list">
+              <li>Flyers &amp; posters</li><li>Banners &amp; roll-ups</li>
+              <li>Business cards</li><li>Social media graphics</li>
+            </ul>
+            <button class="link-btn" type="button" data-pick="Graphics Design">Request this service
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </article>
+
+          <article class="card service reveal" data-group="digital" data-service-name="Web Development">
+            <div class="service-top">
+              <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-web"/></svg></span>
+              <span class="service-num">02</span>
+            </div>
+            <h3>Web Development &amp; Web Apps</h3>
+            <p>Business websites, landing pages and web applications that help you grow your business online.</p>
+            <ul class="ticks" role="list">
+              <li>Modern websites</li><li>Responsive design</li>
+              <li>Landing pages</li><li>Web applications</li>
+            </ul>
+            <button class="link-btn" type="button" data-pick="Web Development">Request this service
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </article>
+
+          <article class="card service reveal" data-group="technical" data-service-name="Solar & Inverter">
+            <div class="service-top">
+              <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-solar"/></svg></span>
+              <span class="service-num">03</span>
+            </div>
+            <h3>Solar &amp; Inverter Consultations</h3>
+            <p>Clean energy solutions for a brighter future — sized properly for your home or business.</p>
+            <ul class="ticks" role="list">
+              <li>Solar system design</li><li>Inverter solutions</li>
+              <li>Energy consultation</li><li>Installation support</li>
+            </ul>
+            <button class="link-btn" type="button" data-pick="Solar & Inverter">Request this service
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </article>
+
+          <article class="card service reveal" data-group="technical" data-service-name="Electrical Installations">
+            <div class="service-top">
+              <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span>
+              <span class="service-num">04</span>
+            </div>
+            <h3>Electrical Installations</h3>
+            <p>Professional electrical services that are safe, reliable and neatly finished.</p>
+            <ul class="ticks" role="list">
+              <li>Bulbs &amp; lighting</li><li>Sockets &amp; switches</li>
+              <li>Wiring &amp; rewiring</li><li>General electrical work</li>
+            </ul>
+            <button class="link-btn" type="button" data-pick="Electrical Installations">Request this service
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CALCULATOR ================= -->
+    <section class="section section-tint" id="calculator">
+      <div class="container calc-grid">
+        <div class="calc-intro reveal">
+          <p class="eyebrow">Solar &amp; inverter planner</p>
+          <h2>Find out roughly what you need</h2>
+          <p class="section-sub">Tell us what you want to run and for how long. You'll get a friendly starting estimate — we'll confirm the exact sizing after a proper consultation.</p>
+          <div class="callout">
+            <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+            <p>This is a planning guide, not a final design. Real loads, cable runs and site conditions always matter.</p>
+          </div>
+        </div>
+
+        <div class="calc card reveal" id="calc">
+          <h3 class="calc-title">Your appliances</h3>
+          <ul class="appliances" id="appliances" role="list"></ul>
+
+          <div class="slider-row">
+            <label for="backup">Backup time wanted</label>
+            <output id="backupOut" for="backup">6 hours</output>
+          </div>
+          <input type="range" id="backup" min="1" max="24" value="6" step="1" />
+
+          <div class="results" aria-live="polite">
+            <div class="result"><span class="result-label">Running load</span><strong id="rLoad">0 W</strong></div>
+            <div class="result"><span class="result-label">Suggested inverter</span><strong id="rInv">—</strong></div>
+            <div class="result"><span class="result-label">Battery capacity</span><strong id="rBat">—</strong></div>
+            <div class="result"><span class="result-label">Solar panels (400 W)</span><strong id="rPan">—</strong></div>
+          </div>
+
+          <button class="btn btn-primary btn-block" id="calcQuote" type="button">Send this to Linton Services
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY US ================= -->
+    <section class="section">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Why people choose us</p>
+          <h2>Careful work, honest prices</h2>
+        </header>
+        <div class="why-grid">
+          <div class="why reveal"><span class="why-icon"><svg class="icon" aria-hidden="true"><use href="#i-hand"/></svg></span><h3>Professional service</h3><p>Clear communication from first message to final handover.</p></div>
+          <div class="why reveal"><span class="why-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Reliable &amp; affordable</h3><p>Fair pricing and work you can depend on, built to last.</p></div>
+          <div class="why reveal"><span class="why-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Timely delivery</h3><p>We agree a timeline up front and we keep to it.</p></div>
+          <div class="why reveal"><span class="why-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span><h3>Excellent support</h3><p>Questions after delivery? We're still just a call away.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESS ================= -->
+    <section class="section section-tint" id="process">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">How we work</p>
+          <h2>Simple from start to finish</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal"><span class="step-n">1</span><h3>Tell us what you need</h3><p>Call, WhatsApp or send the quick form below.</p></li>
+          <li class="step reveal"><span class="step-n">2</span><h3>Get a clear plan</h3><p>We confirm scope, timeline and a fair price.</p></li>
+          <li class="step reveal"><span class="step-n">3</span><h3>We do the work</h3><p>Design, build or install — with updates along the way.</p></li>
+          <li class="step reveal"><span class="step-n">4</span><h3>Handover &amp; support</h3><p>You approve the result, and we stay available.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq">
+      <div class="container faq-wrap">
+        <header class="section-head reveal">
+          <p class="eyebrow">Good to know</p>
+          <h2>Frequently asked questions</h2>
+        </header>
+        <div class="faq reveal">
+          <details open>
+            <summary>How do I request a quote?</summary>
+            <p>Use the form below, call or WhatsApp 09033880869, or email us. Tell us the service you need and we'll reply with next steps.</p>
+          </details>
+          <details>
+            <summary>Can I combine services in one project?</summary>
+            <p>Absolutely. Many clients pair a brand refresh with a new website, or a solar setup with rewiring. One team means fewer hand-offs.</p>
+          </details>
+          <details>
+            <summary>Do you advise before I buy solar equipment?</summary>
+            <p>Yes — that's what the consultation is for. We help you size the inverter, batteries and panels around your real needs, not a generic package.</p>
+          </details>
+          <details>
+            <summary>Will my website work well on phones?</summary>
+            <p>Every site we build is responsive, so it looks and works properly on phones, tablets and desktops.</p>
+          </details>
+          <details>
+            <summary>How fast can you deliver?</summary>
+            <p>It depends on the scope. We agree a realistic timeline with you before starting and aim to deliver on time.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section section-contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Let's build, power and grow together</p>
+          <h2>Tell us about your project</h2>
+          <p class="section-sub">Fill in the form and it opens WhatsApp with your message ready to send. Prefer email or a call? Those work too.</p>
+          <ul class="contact-list" role="list">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+2349033880869">09033880869</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><a href="https://wa.me/2349033880869" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:toludav2015@gmail.com">toludav2015@gmail.com</a></li>
+          </ul>
+        </div>
+
+        <form class="card form reveal" id="quoteForm" novalidate>
+          <fieldset class="field">
+            <legend>I'm interested in</legend>
+            <div class="chips" id="serviceChips">
+              <label class="chip-check"><input type="checkbox" name="service" value="Graphics Design" /><span>Graphics Design</span></label>
+              <label class="chip-check"><input type="checkbox" name="service" value="Web Development" /><span>Web Development</span></label>
+              <label class="chip-check"><input type="checkbox" name="service" value="Solar & Inverter" /><span>Solar &amp; Inverter</span></label>
+              <label class="chip-check"><input type="checkbox" name="service" value="Electrical Installations" /><span>Electrical</span></label>
+            </div>
+            <p class="error" id="err-service" role="alert"></p>
+          </fieldset>
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+            <p class="error" id="err-name" role="alert"></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Phone / WhatsApp</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 0903 388 0869" required />
+              <p class="error" id="err-phone" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="optional">(optional)</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" />
+              <p class="error" id="err-email" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">A few details</label>
+            <textarea id="message" name="message" rows="4" maxlength="600" placeholder="What would you like done, and when?"></textarea>
+            <p class="counter"><span id="msgCount">0</span>/600</p>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Send via WhatsApp
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="btn btn-ghost" type="button" id="emailInstead">Email instead</button>
+          </div>
+          <p class="form-note" id="formNote" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <svg class="brand-mark" aria-hidden="true"><use href="#logo"/></svg>
+        <span class="brand-text">Linton <em>Services</em></span>
+      </a>
+      <p class="footer-tag">…Innovative Solutions, Exceptional Results</p>
+      <p class="footer-copy">© <span id="year">2026</span> Linton Services. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a class="wa-fab" href="https://wa.me/2349033880869" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+  </a>
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
