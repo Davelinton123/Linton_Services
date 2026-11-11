@@ -32,6 +32,19 @@ linton-services/
 | Use your real logo                 | Replace `<symbol id="logo">` in `index.html`, or swap the `<svg class="brand-mark">` for an `<img>` |
 | Add real photos / portfolio        | Put files in an `images/` folder and add a new `<section>` using the `.section` / `.card` classes |
 
+## Admin editing setup
+
+The **Admin** link in the footer opens a Supabase-authenticated editor for the hero headline and description, service titles/descriptions, and contact phone/email. The edits are stored in Supabase and load for all site visitors.
+
+1. Create a Supabase project.
+2. Open `js/supabase-config.js` and set `LINTON_SUPABASE_URL` and `LINTON_SUPABASE_ANON_KEY` to the project's URL and public anon/publishable key. Never put a Supabase service-role key in website code.
+3. In the Supabase SQL Editor, run `supabase-setup.sql`.
+4. In Supabase **Authentication → Users**, create a confirmed user for `toludav2015@gmail.com`. Use a strong, unique password; change any password that has been shared or reused.
+5. In **Authentication → URL Configuration**, set the site URL and allowed redirect URLs to your deployed domain (and your local development URL while testing).
+6. Deploy the site and sign in through the footer's **Admin** link. The database row-level security policy restricts writes to the configured admin email; the public site can only read the published content.
+
+The login is not hard-coded into the page. A static website cannot keep a password secret, so authentication and write permissions are enforced by Supabase instead. Do not disable row-level security or expose a service-role key.
+
 ## Notes
 
 - The quote form has no server: it opens **WhatsApp** (or your email app) with the message pre-filled.

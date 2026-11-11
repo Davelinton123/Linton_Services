@@ -127,7 +127,7 @@
   const note = $("#formNote");
 
   function selectServices(names) {
-    serviceBoxes.forEach(b => { b.checked = names.includes(b.value); });
+    serviceBoxes.forEach(b => { b.checked = names.includes(b.value) || names.includes(b.dataset.serviceKey); });
   }
   function goToContact(names) {
     if (names) selectServices(names);
@@ -260,6 +260,213 @@
   [fields.name.el, fields.phone.el, fields.email.el].forEach(el =>
     el.addEventListener("input", () => { if (el.getAttribute("aria-invalid") === "true") setError(el.id, ""); }));
   serviceBoxes.forEach(b => b.addEventListener("change", () => setError("service", "")));
+
+  /* ---------- Supabase-backed admin editor ---------- */
+  const adminDialog = $("#adminDialog");
+  const adminLogin = $("#adminLogin");
+  const adminEditor = $("#adminEditor");
+  const adminStatus = $("#adminStatus");
+  const adminSetupNote = $("#adminSetupNote");
+  const adminServiceFields = $("#adminServiceFields");
+  $("#adminEmail").value = "toludav2015@gmail.com";
+  const configuredSupabase = window.supabase
+    && window.LINTON_SUPABASE_URL?.startsWith("https://")
+    && window.LINTON_SUPABASE_ANON_KEY
+    && !window.LINTON_SUPABASE_ANON_KEY.includes("YOUR_");
+  const adminClient = configuredSupabase
+    ? window.supabase.createClient(window.LINTON_SUPABASE_URL, window.LINTON_SUPABASE_ANON_KEY)
+    : null;
+  serviceBoxes.forEach(input => { input.dataset.serviceKey = input.value; });
+  const contactPhone = $(".contact-list a[href^='tel']");
+  const contactEmail = $(".contact-list a[href^='mailto']");
+
+  function defaultSiteContent() {
+    return {
+      headline: $(".hero h1").textContent.trim().replace(/\s+/g, " "),
+      heroDescription: $(".hero .lead").textContent.trim().replace(/\s+/g, " "),
+      services: serviceCards.map(card => ({
+        name: card.dataset.serviceName,
+        title: $("h3", card).textContent.trim(),
+        description: $("p", card).textContent.trim()
+      })),
+      phone: contactPhone.textContent.trim(),
+      email: contactEmail.textContent.trim()
+    };
+  }
+
+  function applySiteContent(content) {
+    const data = content && typeof content === "object" ? content : defaultSiteContent();
+    if (typeof data.headline === "string") {
+      const headline = $(".hero h1");
+      const splitAt = data.headline.trim().lastIndexOf(" ");
+      const accent = document.createElement("span");
+      accent.className = "accent";
+      accent.textContent = splitAt < 0 ? data.headline : data.headline.slice(splitAt + 1);
+      headline.replaceChildren(document.createTextNode(splitAt < 0 ? "" : `${data.headline.slice(0, splitAt)} `), accent);
+    }
+    if (typeof data.heroDescription === "string") $(".hero .lead").textContent = data.heroDescription;
+    if (Array.isArray(data.services)) data.services.forEach(item => {
+      const card = serviceCards.find(el => el.dataset.serviceName === item.name);
+      if (!card) return;
+      if (typeof item.title === "string") $("h3", card).textContent = item.title;
+      if (typeof item.description === "string") $("p", card).textContent = item.description;
+      if (typeof item.title === "string") {
+        card.querySelector("[data-pick]").dataset.pick = item.title;
+        card.querySelector("[data-pick]").childNodes[0].textContent = `Request ${item.title}`;
+        const box = serviceBoxes.find(input => input.dataset.serviceKey === item.name);
+        if (box) {
+          box.value = item.title;
+          box.nextElementSibling.textContent = item.title;
+        }
+      }
+    });
+    if (typeof data.phone === "string") {
+      contactPhone.textContent = data.phone;
+      const digits = data.phone.replace(/\D/g, "");
+      const international = digits.startsWith("0") ? `234${digits.slice(1)}` : digits;
+      contactPhone.href = `tel:+${international}`;
+      $(".contact-list a[href*='wa.me']").href = `https://wa.me/${international}`;
+      $(".wa-fab").href = `https://wa.me/${international}`;
+      CONFIG.whatsappNumber = international;
+    }
+    if (typeof data.email === "string") {
+      contactEmail.textContent = data.email;
+      contactEmail.href = `mailto:${data.email}`;
+      CONFIG.email = data.email;
+    }
+  }
+
+  function setAdminStatus(message, isError = false) {
+    adminStatus.textContent = message;
+    adminStatus.classList.toggle("is-error", isError);
+  }
+
+  function populateAdminEditor(content) {
+    const data = content || defaultSiteContent();
+    adminEditor.elements.headline.value = data.headline || "";
+    adminEditor.elements.heroDescription.value = data.heroDescription || "";
+    adminEditor.elements.phone.value = data.phone || "";
+    adminEditor.elements.email.value = data.email || "";
+    adminServiceFields.replaceChildren();
+    (data.services || []).forEach((service, index) => {
+      const section = document.createElement("section");
+      section.className = "admin-service-entry";
+      const heading = document.createElement("h3");
+      heading.textContent = `Service ${index + 1}`;
+      const titleLabel = document.createElement("label");
+      titleLabel.textContent = "Title";
+      const titleInput = document.createElement("input");
+      titleInput.name = `serviceTitle${index}`;
+      titleInput.maxLength = 100;
+      titleInput.required = true;
+      titleInput.value = service.title || "";
+      titleLabel.append(titleInput);
+      const descriptionLabel = document.createElement("label");
+      descriptionLabel.textContent = "Description";
+      const descriptionInput = document.createElement("textarea");
+      descriptionInput.name = `serviceDescription${index}`;
+      descriptionInput.maxLength = 500;
+      descriptionInput.rows = 3;
+      descriptionInput.required = true;
+      descriptionInput.value = service.description || "";
+      descriptionLabel.append(descriptionInput);
+      section.append(heading, titleLabel, descriptionLabel);
+      adminServiceFields.append(section);
+    });
+  }
+
+  async function loadAdminContent() {
+    if (!adminClient) return defaultSiteContent();
+    const { data, error } = await adminClient.from("site_content").select("content").eq("id", "homepage").maybeSingle();
+    if (error) throw error;
+    if (data?.content) applySiteContent(data.content);
+    return data?.content || defaultSiteContent();
+  }
+
+  async function syncAdminSession() {
+    if (!adminClient) return;
+    const { data: { session } } = await adminClient.auth.getSession();
+    adminLogin.hidden = Boolean(session);
+    adminEditor.hidden = !session;
+    if (!session) return;
+    $("#adminUser").textContent = `Signed in as ${session.user.email}`;
+    try {
+      const content = await loadAdminContent();
+      populateAdminEditor(content);
+    } catch (error) {
+      setAdminStatus(`Could not load site content: ${error.message}`, true);
+    }
+  }
+
+  $("#adminOpen").addEventListener("click", async () => {
+    adminDialog.showModal();
+    if (!adminClient) {
+      adminSetupNote.hidden = false;
+      setAdminStatus("Supabase is not configured yet.", true);
+      return;
+    }
+    try {
+      await syncAdminSession();
+      if (!adminEditor.hidden) setAdminStatus("");
+    } catch (error) {
+      setAdminStatus(`Could not connect to admin service: ${error.message}`, true);
+    }
+  });
+  $("#adminClose").addEventListener("click", () => adminDialog.close());
+  adminDialog.addEventListener("click", event => { if (event.target === adminDialog) adminDialog.close(); });
+
+  adminLogin.addEventListener("submit", async event => {
+    event.preventDefault();
+    setAdminStatus("Signing in…");
+    const { error } = await adminClient.auth.signInWithPassword({
+      email: $("#adminEmail").value.trim(),
+      password: $("#adminPassword").value
+    });
+    $("#adminPassword").value = "";
+    if (error) { setAdminStatus(error.message, true); return; }
+    setAdminStatus("");
+    await syncAdminSession();
+  });
+
+  adminEditor.addEventListener("submit", async event => {
+    event.preventDefault();
+    if (!adminClient) return;
+    const current = await loadAdminContent();
+    const content = {
+      ...current,
+      headline: adminEditor.elements.headline.value.trim(),
+      heroDescription: adminEditor.elements.heroDescription.value.trim(),
+      phone: adminEditor.elements.phone.value.trim(),
+      email: adminEditor.elements.email.value.trim(),
+      services: (current.services || []).map((service, index) => ({
+        ...service,
+        title: adminEditor.elements[`serviceTitle${index}`].value.trim(),
+        description: adminEditor.elements[`serviceDescription${index}`].value.trim()
+      }))
+    };
+    setAdminStatus("Saving changes…");
+    const { error } = await adminClient.from("site_content").upsert({ id: "homepage", content, updated_at: new Date().toISOString() });
+    if (error) { setAdminStatus(`Save failed: ${error.message}`, true); return; }
+    applySiteContent(content);
+    populateAdminEditor(content);
+    setAdminStatus("Changes saved and published.");
+  });
+
+  $("#adminLogout").addEventListener("click", async () => {
+    const { error } = await adminClient.auth.signOut();
+    if (error) { setAdminStatus(error.message, true); return; }
+    adminEditor.hidden = true;
+    adminLogin.hidden = false;
+    setAdminStatus("Signed out.");
+  });
+
+  if (adminClient) {
+    adminClient.auth.onAuthStateChange((_event, session) => {
+      adminLogin.hidden = Boolean(session);
+      adminEditor.hidden = !session;
+    });
+    loadAdminContent().catch(error => console.warn("Could not load published site content:", error.message));
+  }
 
   /* ---------- Footer year + header CTA ---------- */
   $("#year").textContent = new Date().getFullYear();

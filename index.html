@@ -403,6 +403,7 @@
       </a>
       <p class="footer-tag">…Innovative Solutions, Exceptional Results</p>
       <p class="footer-copy">© <span id="year">2026</span> Linton Services. All rights reserved.</p>
+      <button class="admin-link" id="adminOpen" type="button">Admin</button>
     </div>
   </footer>
 
@@ -411,6 +412,37 @@
   </a>
   <button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
 
+  <dialog class="admin-dialog" id="adminDialog" aria-labelledby="adminTitle">
+    <div class="admin-panel">
+      <div class="admin-heading">
+        <div><p class="eyebrow">Site management</p><h2 id="adminTitle">Admin access</h2></div>
+        <button class="admin-close" id="adminClose" type="button" aria-label="Close admin panel">×</button>
+      </div>
+      <form class="admin-login" id="adminLogin">
+        <p>Sign in with your admin account to edit the live website.</p>
+        <label>Email<input id="adminEmail" type="email" autocomplete="username" required /></label>
+        <label>Password<input id="adminPassword" type="password" autocomplete="current-password" required /></label>
+        <button class="btn btn-primary" type="submit">Sign in</button>
+      </form>
+      <form class="admin-editor" id="adminEditor" hidden>
+        <p class="admin-user" id="adminUser"></p>
+        <label>Hero headline<input name="headline" maxlength="120" required /></label>
+        <label>Hero description<textarea name="heroDescription" rows="3" maxlength="500" required></textarea></label>
+        <div class="admin-service-fields" id="adminServiceFields"></div>
+        <label>Contact phone<input name="phone" type="tel" maxlength="30" required /></label>
+        <label>Contact email<input name="email" type="email" required /></label>
+        <div class="admin-actions">
+          <button class="btn btn-primary" type="submit">Save changes</button>
+          <button class="btn btn-ghost" id="adminLogout" type="button">Sign out</button>
+        </div>
+      </form>
+      <p class="admin-status" id="adminStatus" role="status" aria-live="polite"></p>
+      <p class="admin-setup-note" id="adminSetupNote" hidden>Admin editing needs a configured Supabase project. Follow the setup steps in README.md.</p>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
