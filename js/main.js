@@ -264,6 +264,7 @@
   /* ---------- Supabase-backed admin editor ---------- */
   const adminDialog = $("#adminDialog");
   const adminLogin = $("#adminLogin");
+  const adminReset = $("#adminReset");
   const adminEditor = $("#adminEditor");
   const adminStatus = $("#adminStatus");
   const adminSetupNote = $("#adminSetupNote");
@@ -428,6 +429,47 @@
     await syncAdminSession();
   });
 
+  $("#adminForgotPassword").addEventListener("click", async () => {
+    if (!adminClient) return;
+    const email = $("#adminEmail").value.trim();
+    if (!email) {
+      setAdminStatus("Enter your admin email address first.", true);
+      $("#adminEmail").focus();
+      return;
+    }
+    setAdminStatus("Requesting a password reset…");
+    const redirectTo = `${window.location.origin}${window.location.pathname}`;
+    const { error } = await adminClient.auth.resetPasswordForEmail(email, { redirectTo });
+    if (error) {
+      setAdminStatus(`Could not send reset email: ${error.message}`, true);
+      return;
+    }
+    setAdminStatus("If that email has an account, Supabase sent a password reset link. Check your inbox and spam folder.");
+  });
+
+  adminReset.addEventListener("submit", async event => {
+    event.preventDefault();
+    const newPassword = $("#adminNewPassword").value;
+    const confirmPassword = $("#adminConfirmPassword").value;
+    if (newPassword !== confirmPassword) {
+      setAdminStatus("The passwords do not match. Please enter them again.", true);
+      return;
+    }
+    setAdminStatus("Updating password…");
+    const { error } = await adminClient.auth.updateUser({ password: newPassword });
+    $("#adminNewPassword").value = "";
+    $("#adminConfirmPassword").value = "";
+    if (error) {
+      setAdminStatus(`Could not update password: ${error.message}`, true);
+      return;
+    }
+    adminReset.hidden = true;
+    adminLogin.hidden = true;
+    adminEditor.hidden = false;
+    await syncAdminSession();
+    setAdminStatus("Password updated. You are signed in; your new password is ready for next time.");
+  });
+
   adminEditor.addEventListener("submit", async event => {
     event.preventDefault();
     if (!adminClient) return;
@@ -461,10 +503,26 @@
   });
 
   if (adminClient) {
-    adminClient.auth.onAuthStateChange((_event, session) => {
+    adminClient.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        adminDialog.showModal();
+        adminLogin.hidden = true;
+        adminEditor.hidden = true;
+        adminReset.hidden = false;
+        setAdminStatus("Set a new password for your admin account.");
+        return;
+      }
       adminLogin.hidden = Boolean(session);
       adminEditor.hidden = !session;
+      if (event === "SIGNED_OUT") adminReset.hidden = true;
     });
+    if (new URLSearchParams(window.location.hash.slice(1)).get("type") === "recovery") {
+      adminDialog.showModal();
+      adminLogin.hidden = true;
+      adminEditor.hidden = true;
+      adminReset.hidden = false;
+      setAdminStatus("Set a new password for your admin account.");
+    }
     loadAdminContent().catch(error => console.warn("Could not load published site content:", error.message));
   }
 

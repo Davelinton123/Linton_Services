@@ -43,6 +43,8 @@ The **Admin** link in the footer opens a Supabase-authenticated editor for the h
 5. In **Authentication → URL Configuration**, set the site URL and allowed redirect URLs to your deployed domain (and your local development URL while testing).
 6. Deploy the site and sign in through the footer's **Admin** link. The database row-level security policy restricts writes to the configured admin email; the public site can only read the published content.
 
+If you accepted an invitation without setting a password, open **Admin** and choose **Forgot password? Send me a reset link**. Open the recovery email on the same site/browser, choose a new password on the page, then sign in. Supabase **Authentication → URL Configuration → Redirect URLs** must allow the site address; for Live Server, add `http://127.0.0.1:5500/**` (use the host and port shown in your browser if different). The editor does not have a separate built-in password reset page; the recovery link opens the password form in the Admin dialog.
+
 The login is not hard-coded into the page. A static website cannot keep a password secret, so authentication and write permissions are enforced by Supabase instead. Do not disable row-level security or expose a service-role key.
 
 ## Notes

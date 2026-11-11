@@ -423,6 +423,13 @@
         <label>Email<input id="adminEmail" type="email" autocomplete="username" required /></label>
         <label>Password<input id="adminPassword" type="password" autocomplete="current-password" required /></label>
         <button class="btn btn-primary" type="submit">Sign in</button>
+        <button class="admin-text-button" id="adminForgotPassword" type="button">Forgot password? Send me a reset link</button>
+      </form>
+      <form class="admin-reset" id="adminReset" hidden>
+        <p>Choose a new password for your admin account.</p>
+        <label>New password<input id="adminNewPassword" type="password" autocomplete="new-password" minlength="8" required /></label>
+        <label>Confirm new password<input id="adminConfirmPassword" type="password" autocomplete="new-password" minlength="8" required /></label>
+        <button class="btn btn-primary" type="submit">Set new password</button>
       </form>
       <form class="admin-editor" id="adminEditor" hidden>
         <p class="admin-user" id="adminUser"></p>

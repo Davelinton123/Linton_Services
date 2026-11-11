@@ -322,9 +322,10 @@ input:focus, textarea:focus { outline: none; border-color: var(--gold); box-shad
 .admin-heading { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
 .admin-heading h2 { font-size: 1.8rem; }
 .admin-close { border: 1px solid var(--line); border-radius: 50%; width: 2.4rem; height: 2.4rem; background: var(--surface); font-size: 1.5rem; line-height: 1; }
-.admin-login, .admin-editor { display: grid; gap: 1rem; }
-.admin-login label, .admin-editor label { display: grid; gap: 0.4rem; font-size: 0.88rem; font-weight: 600; }
-.admin-login input, .admin-editor input, .admin-editor textarea { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
+.admin-login, .admin-reset, .admin-editor { display: grid; gap: 1rem; }
+.admin-login label, .admin-reset label, .admin-editor label { display: grid; gap: 0.4rem; font-size: 0.88rem; font-weight: 600; }
+.admin-login input, .admin-reset input, .admin-editor input, .admin-editor textarea { width: 100%; padding: 0.75rem 0.9rem; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
+.admin-text-button { justify-self: start; border: 0; padding: 0.2rem 0; background: transparent; color: var(--gold-strong); text-decoration: underline; text-underline-offset: 3px; }
 .admin-editor textarea { resize: vertical; }
 .admin-service-fields { display: grid; gap: 1rem; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
 .admin-service-fields h3 { font-size: 1.15rem; }
